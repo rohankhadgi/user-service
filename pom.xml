@@ -128,15 +128,35 @@
 						<id>default</id>
 						<goals>
 							<goal>build</goal>
-							<goal>push</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<repository>rohankhadgi/thrumi-user-service</repository>
+					<repository>rohankhadgi/thrumi-${project.artifactId}</repository>
 					<tag>${project.version}</tag>
 					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+					<from>
+						<image>openjdk:17</image>
+					</from>
+					<to>
+						<image>registry.hub.docker.com/rohankhadgi/thrumi-${project.artifactId}</image>
+						<tags>${project.version}</tags>
+					</to>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
